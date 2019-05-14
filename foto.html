@@ -1,0 +1,43 @@
+<header class="intro-header" style="background-image: url('immagine/foto.jpg')">
+    <div class="container overlay">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1> Galleria Foto </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- content -->
+<div class="container">
+	<div class="row">
+	    <div class="col-xs-12 col-sm-3">
+	        <div class="list-group">
+                <a ng-click="switchTemplate(5)" class="list-group-item" ng-class="{active:selected==5}">
+                    Prove Teatro
+                </a>
+                <a ng-click="switchTemplate(1)" class="list-group-item" ng-class="{active:selected==1}">
+                    Visita Consolato
+                </a>
+                <a ng-click="switchTemplate(2)" class="list-group-item" ng-class="{active:selected==2}">
+                    Elezione 2016
+                </a>
+                <a ng-click="switchTemplate(3)" class="list-group-item" ng-class="{active:selected==3}">
+                    Partita Calcio
+                </a>
+                <a ng-click="switchTemplate(4)" class="list-group-item" ng-class="{active:selected==4}">
+                    Festa Fine Anno 2016
+                </a>
+            </div><!-- /list-group -->      
+	    </div><!-- /col -->
+	    <div class="col-xs-12 col-sm-9">
+	        <div class="row">
+                <div class="slide-animate" ng-include="templateUrl"></div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<!-- /container -->
+

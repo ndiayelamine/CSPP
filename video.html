@@ -1,0 +1,30 @@
+<header class="intro-header" style="background-image: url('immagine/video.jpg')">
+    <div class="container overlay">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1> Galleria Video </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- content -->
+<div class="container" ng-init="getVideo()">
+	<div class="row">
+	    <div class="col-xs-12 col-sm-3">
+	        <div class="list-group">
+                <a ng-click="switchTemplateVideo(1)" class="list-group-item" ng-class="{active:selectedVideo==1}">
+                    Prove Teatro
+                </a>
+            </div><!-- /list-group -->      
+	    </div><!-- /col -->
+	    <div class="col-xs-12 col-sm-9">
+	        <div class="row">
+                <div class="slide-animate" ng-include="videotemplateUrl"></div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<!-- /container -->

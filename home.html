@@ -1,0 +1,44 @@
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" >
+    <div class="container overlay container-header">
+        <div id="myCarousel" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="item active">
+              <img ng-src="./immagine/bandiera_senegal.png" class="img-responsive imgCarousel">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>Un Popolo, &nbsp; Un Obiettivo, &nbsp; Una Fede</h1>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+            <div class="item" ng-repeat="item in carousel_items">
+              <img ng-src="{{item.src}}" class="img-responsive imgCarousel">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>{{item.title}}</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Controls -->
+            <span class="left carousel-control" data-target="#myCarousel" data-slide="prev">
+                <span class="icon-prev"></span>
+            </span>
+            <span class="right carousel-control" data-target="#myCarousel" data-slide="next">
+                <span class="icon-next"></span>
+            </span>
+      </div>
+    </div>
+</header>
+
+<!-- Jumbotron -->
+<div class="jumbotron">
+    <h1 style="text-align:center;"><span class="inizioCar">C</span>omunità <span class="inizioCar">S</span>enegalesi di 
+        <span class="inizioCar">P</span>arma e <span class="inizioCar">P</span>rovincia </h1>
+    <p style="font-weight: 400;">
+        Promuove l’accoglienza e l’inserimento dei Senegalesi a Parma, l’integrazione in Italia, lo scambio delle esperienze, la cooperazione decentrata, l’intercultura con altre nazioni, lo sviluppo della cultura senegalese in Italia, viaggi di scambio Italia/Senegal con scopo costruttivo e attività sportive e tanto altro.
+    </p>
+</div>
+<!-- /.Jumbotron -->

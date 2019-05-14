@@ -1,0 +1,44 @@
+<header class="intro-header" style="background-image: url('immagine/area_riservata.jpg')">
+    <div class="container overlay">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>Area Riservata</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div ng-show="isCorrectLogin" class="alert alert-danger alert-dismissable fade in">
+<!--                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+                <strong> Nome Utente o Password sbagliato !!! </strong>
+            </div>
+            <form name="login" id="loginForm" ng-submit="serviceLogin()" novalidate>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label> Nome Utente </label>
+                        <input type="text" class="form-control" placeholder="Nome Utente" id="userName" ng-model="userName" name="userName" required>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label> Password </label>
+                        <input type="password" class="form-control" placeholder="Password" id="loginPass" ng-model="loginPass" name="loginPass" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="form-group col-xs-12">
+                        <button type="submit" class="btn btn-success" ng-disabled="login.userName.$invalid || login.loginPass.$invalid"> Accedi </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

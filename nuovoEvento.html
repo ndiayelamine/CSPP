@@ -1,0 +1,66 @@
+<div class="well well-sm">
+    <legend><i class="glyphicon glyphicon-globe"></i> Evento</legend>
+    <div ng-show="$parent.eventoInserito" class="alert alert-success alert-dismissable fade in">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong> Evento Creato con successo !!! </strong>
+    </div>
+    <div ng-show="$parent.erroreEvento" class="alert alert-danger alert-dismissable fade in">
+        <!--                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+        <strong> Per favore completare tutti i campi !!! </strong>
+    </div>
+    <form class="form" id="formEvento" ng-submit="$parent.creaEvento()" novalidate>
+        <input class="form-control" type="hidden" ng-model="$parent.username">
+        <input class="form-control" placeholder="Nome Evento" type="text" ng-model="$parent.titoloEvento" />
+        <textarea id="messaggioEvento" class="form-control" rows="9" cols="25" required="required" placeholder="Messaggio Evento" ng-model="$parent.messaggioEvento"></textarea>
+        <label> Data e Ora Evento </label>
+        <div class="row">
+            <div class="col-xs-4 col-md-4">
+                <select class="form-control" ng-model="giorno.numero">
+                    <option ng-repeat="giorno in giorni" value="{{giorno.numero}}"> {{giorno.numero}} </option>
+                </select>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <select class="form-control" ng-model="mese.numero" ng-change="cambioData(mese.numero)">
+                    <option ng-repeat="mese in mesi" value="{{mese.numero}}"> {{mese.nome}} </option>
+                </select>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <select class="form-control" ng-model="anno"> 
+                    <option value="{{anno}}"> {{anno}} </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-md-4">
+                <select class="form-control" ng-model="ora.hh">
+                    <option ng-repeat="ora in ore" value="{{ora.hh}}"> {{ora.hh}} </option>
+                </select>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <select class="form-control" ng-model="minuto.mm">
+                    <option ng-repeat="minuto in minuti" value="{{minuto.mm}}"> {{minuto.mm}} </option>
+                </select>
+            </div>
+            <div class="col-xs-4 col-md-4">
+            </div>
+        </div>
+        <label> Tipo Evento </label>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <select class="form-control" ng-model="tipo.nome">
+                    <option ng-repeat="tipo in tipi" value="{{tipo.nome}}">{{tipo.nome}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+                <button class="btn btn-sm btn-primary" type="submit" style="margin-bottom:8px;">Crea Evento</button>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+                <button class="btn btn-sm btn-danger" type="reset" style="margin-bottom:8px;" ng-click="$parent.reset()">
+                    Svuota Campi
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

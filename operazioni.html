@@ -1,0 +1,33 @@
+<link href="./css/operazioni.css" rel="stylesheet">
+<header class="intro-header" style="background-image: url('immagine/operazioni.jpg')">
+    <div class="container overlay">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>Operazioni Possibili</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row inbox">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body inbox-menu">						
+                    <a href="" class="btn btn-success btn-block" ng-click="cambiaOperazione('NE')">Nuovo Evento</a>
+<!--                    <a href="" class="btn btn-success btn-block" ng-click="cambiaOperazione('IS')">Invia SMS</a>-->
+                    <a href="" class="btn btn-info btn-block" ng-click="cambiaOperazione('CF')" ng-disabled="true">Carica Foto</a>
+                    <a href="" class="btn btn-danger btn-block" ng-click="disconnetti()">Disconnetti</a>
+                </div>	
+            </div>
+        </div>
+        
+        <div class="col-md-9">
+	        <div class="row">
+                <div class="slide-animate" ng-include="templateOperazioneUrl"></div>
+	        </div>
+	    </div>
+    </div>
+</div>

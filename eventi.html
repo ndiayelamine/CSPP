@@ -1,0 +1,373 @@
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <style type="text/css">
+        .google-maps {
+            position: relative;
+            padding-bottom: 75%; // This is the aspect ratio
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .google-maps iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+    <header class="intro-header" style="background-image: url('immagine/eventi.jpg')">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <div class="container overlay">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>Eventi dell&#39;anno</h1>
+
+                        <hr class="small" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- content -->
+
+    <div class="container" ng-init="getEventi()">
+        <div class="row">
+            <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+                <ul class="event-list">
+                    <!--
+                <li>
+                    <time datetime="2017-01-07">
+                        <span class="day"> 7 </span>
+                        <span class="month"> Gen </span>
+                        <span class="year"> 2017 </span>
+                        <span class="time"> 15:00 </span>
+                    </time>						
+                    <div class="info">
+                        <h2 class="title"> Festa di fine anno </h2>
+                        <p class="desc"> Premiazione dei ragazzi provenienti da diverse Scuole e Daara </p>
+                        <ul>
+				            <li style="font-weight:400;">
+                                <a data-toggle="modal" data-target="#myModal">
+                                    <span class="glyphicon glyphicon-list-alt"></span>  Dettagli
+                                </a>
+                            </li>
+				        </ul>
+                    </div>
+                </li>
+-->
+                    <li ng-repeat="evento in listaEventi track by $index">
+                        <time datetime="evento.DATA_ORA">
+                            <span class="day">{{evento.DATA_ORA | split:' ':0 | split:'-':2}}</span> 
+                            <span class="month"> {{evento.DATA_ORA | split:' ':0 | split:'-':1}} </span> 
+                            <span class="year"> {{evento.DATA_ORA | split:' ':0 | split:'-':0}} </span> 
+                            <span class="time"> {{evento.DATA_ORA | split:' ':1}} </span> 
+                        </time>
+                        <div class="info">
+                            <h2 class="title">{{evento.NOME}}</h2>
+                            <p class="desc"> {{evento.MESSAGGIO}} alle ore {{evento.DATA_ORA | split:' ':1}} </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header"><button class="close" data-dismiss="modal" type="button">&times;</button>
+
+                    <h4 class="modal-title">Dove e Cosa Serve?</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p></p>
+
+                    <h3>Il luogo dove si fa &egrave;:</h3>
+
+                    <article>Via Primo Bandini, 43123 Parma PR, Italia</article>
+
+                    <h3>I documenti che servono sono:</h3>
+
+                    <article>* Carta d&#39;ident&agrave; vecchia (originale e fotocopia)<br /> * oppure Carta Elettorale valida<br /> * oppure Certificato di nascita valido (validità 1 anno)</article>
+
+                    <p></p>
+
+                    <hr />
+                    <p></p>
+
+                    <h3>Lieu:</h3>
+
+                    <article>Via Primo Bandini, 43123 Parma PR, Italia</article>
+
+                    <h3>Les documents nec&eacute;ssaires sont:</h3>
+
+                    <article>* la derni&egrave;re carte d&#39;identit&eacute; (originale et photocopie)<br /> * ou Carte &eacute;lectorale valide<br /> * ou d&#39;une extrait de naissance valide (validité 1 an)</article>
+
+                    <p></p>
+
+                    <p></p>
+
+                    <h3>Info parcheggio:</h3>
+
+                    <article>Per chi volesse parcheggiare la macchina esiste un parcheggio in via Donnino Emanuele che si trova in una via a destra della via Mantova 19, prima della rotonda grande di via Emilia Est.
+                        <div class="google-maps"><iframe allowfullscreen="" frameborder="0" height="450" src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sit!2sit!4v1485699162827!6m8!1m7!1syd_zeLb5sCzMAAKPmE3FMg!2m2!1d44.79897513252696!2d10.34618778862747!3f130.94893232751122!4f-9.710504403544206!5f0.7820865974627469" style="border:0" width="auto"></iframe></div>
+                    </article>
+
+                    <p></p>
+                    <!--
+            <uib-accordion>
+                <div uib-accordion-group class="panel-success" is-open="status.open">
+                    <uib-accordion-heading> MEDAGLIE <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </uib-accordion-heading>
+                        <div class="notice notice-sm">
+                            1.	ARAME COUNDOUL (DARA PARMA)
+                        </div>
+                        <div class="notice notice-sm">
+                            2.	BA ADJA OULIMATA
+                        </div>
+                          <div class="notice notice-sm">
+                            3.	BARA NDIAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            4.	BINTOU FALL
+                        </div>                        
+                        <div class="notice notice-sm">
+                            5.	CAMARA FATOU KINE
+                        </div>
+                        <div class="notice notice-sm">
+                            6.	CAMARA MBAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            7.	COUMBA DIOP
+                        </div>
+                        <div class="notice notice-sm">
+                            8.	DIENG AYNINA
+                        </div>
+                        <div class="notice notice-sm">
+                            9.	DIOP ABDOU
+                        </div>
+                        <div class="notice notice-sm">
+                            10.	DIOR DIENG
+                        </div>
+                        <div class="notice notice-sm">
+                            11.	FATOU DIOP
+                        </div>
+                        <div class="notice notice-sm">
+                            12.	FATOU MBACKE
+                        </div>
+                        <div class="notice notice-sm">
+                            13.	FATOU SARR
+                        </div>
+                        <div class="notice notice-sm">
+                            14.	LAMINE BEYE (DARA PARMA)
+                        </div>
+                        <div class="notice notice-sm">
+                            15.	MAGUETTE NDIAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            16.	MAMADOU DIOP
+                        </div>
+                        <div class="notice notice-sm">
+                            17.	MOUHAMED NDIAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            18.	MOUSSA NDIAYE (DARA PARMA)
+                        </div>
+                        <div class="notice notice-sm">
+                            19.	MOUSSA SYLL
+                        </div>
+                        <div class="notice notice-sm">
+                            20.	MOUSTAPHA DIOP
+                        </div>
+                        <div class="notice notice-sm">
+                            21.	NIANG ABDOUL AZIZ
+                        </div>
+                        <div class="notice notice-sm">
+                            22.	SERIGNE FALLOU MBAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            23.	SERIGNE MBAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            24.	SOKHNA AMINATA SYLL
+                        </div>
+                        <div class="notice notice-sm">
+                            25.	YOUSSOUPHA DERR
+                        </div>
+                </div>
+            </uib-accordion>
+            
+            <uib-accordion>
+                <div uib-accordion-group class="panel-danger" is-open="status.open">
+                    <uib-accordion-heading> CESTINI <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </uib-accordion-heading>
+                        <div class="notice notice-sm">
+                            1.	DIOP ABDOU
+                        </div>
+                        <div class="notice notice-sm">
+                            2.	BARA NDIAYE
+                        </div>
+                          <div class="notice notice-sm">
+                            3.	CAMARA FATOU KINE
+                        </div>
+                        <div class="notice notice-sm">
+                            4.	DIENG AYNINA
+                        </div>                        
+                        <div class="notice notice-sm">
+                            5.	DIOR DIENG
+                        </div>
+                        <div class="notice notice-sm">
+                            6.	MOUSTAPHA DIOP
+                        </div>
+                        <div class="notice notice-sm">
+                            7.	NIANG ABDOUL AZIZ
+                        </div>
+                        <div class="notice notice-sm">
+                            8.	SOKHNA AMINATA SYLL
+                        </div>
+                        <div class="notice notice-sm">
+                            9.	FATOU DIOP
+                        </div>
+                        <div class="notice notice-sm">
+                           10.	BA ADJA OULIMATA
+                        </div>
+                        <div class="notice notice-sm">
+                            11.	CAMARA MBAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            12.	DIOP COUMBA
+                        </div>
+                        <div class="notice notice-sm">
+                            13.	DIOP MAMADOU
+                        </div>
+                        <div class="notice notice-sm">
+                            14.	FALL BINTOU
+                        </div>
+                        <div class="notice notice-sm">
+                            15.	FATOU MBACKE
+                        </div>
+                        <div class="notice notice-sm">
+                            16.	MOUHAMED NDIAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            17.	NDIAYE MAGUETTE
+                        </div>
+                        <div class="notice notice-sm">
+                            18.	SARR FATOU
+                        </div>
+                        <div class="notice notice-sm">
+                            19.	SERIGNE FALLOU MBAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            20.	SERIGNE MBAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            21.	SYLL MOUSSA
+                        </div>
+                        <div class="notice notice-sm">
+                            22.	YOUSSOUPHA DERR
+                        </div>
+                </div>
+            </uib-accordion>
+            
+            <uib-accordion>
+                <div uib-accordion-group class="panel-warning" is-open="status.open">
+                    <uib-accordion-heading> DIPLOMI <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </uib-accordion-heading>
+                        <div class="notice notice-sm">
+                            1.	ARAME COUNDOUL
+                        </div>
+                        <div class="notice notice-sm">
+                            2.	AMINATA NDIAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            3.	BARA NDIAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            4.	CAMARA FATOU KINE
+                        </div>                        
+                        <div class="notice notice-sm">
+                            5.	DIENG AYNINA
+                        </div>
+                        <div class="notice notice-sm">
+                            6.	DIOP ABDOU
+                        </div>
+                        <div class="notice notice-sm">
+                            7.	DIOR DIENG
+                        </div>
+                        <div class="notice notice-sm">
+                            8.	KHADIM NDIAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            9.	LAMINE BEYE
+                        </div>
+                        <div class="notice notice-sm">
+                            10.	MAIMOUNA DIOP
+                        </div>
+                        <div class="notice notice-sm">
+                            11.	MOUSSA NDIAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            12.	MOUSTAPHA DIOP
+                        </div>
+                        <div class="notice notice-sm">
+                            13.	NIANG ABDOUL AZIZ
+                        </div>
+                        <div class="notice notice-sm">
+                            14.	SEYNI SALL NDIAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            15.	SOKHNA AMINATA SYLL
+                        </div>
+                        <div class="notice notice-sm">
+                            16.	TAHA ABIB
+                        </div>
+                        <div class="notice notice-sm">
+                            17.	YACINE BANE
+                        </div>
+                </div>
+            </uib-accordion>
+            
+            <uib-accordion>
+                <div uib-accordion-group class="panel-info" is-open="status.open">
+                    <uib-accordion-heading> REGALI <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </uib-accordion-heading>
+                        <div class="notice notice-sm">
+                            1.	MAIMOUNA DIOP
+                        </div>
+                        <div class="notice notice-sm">
+                            2.	KHADIM NDIAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            3.	TAHA ABIB
+                        </div>
+                        <div class="notice notice-sm">
+                            4.	AMINATA NDIAYE
+                        </div>                        
+                        <div class="notice notice-sm">
+                            5.	SEYNI SALL NDIAYE
+                        </div>
+                        <div class="notice notice-sm">
+                            6.	YACINE BANE
+                        </div>
+                </div>
+            </uib-accordion>
+-->
+                </div>
+
+                <div class="modal-footer"><button class="btn-custom btn btn-success" data-dismiss="modal" type="button">Chiudi</button></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

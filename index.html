@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it" ng-app="cspp_App">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="associazione senegalesi di parma e provincia CSPP">
+    <meta name="author" content="">
+
+    <title>C.S.P.P</title>
+    <link rel="icon" type="image/ico" href="./immagine/favicon.ico" />
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/ekko-lightbox.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/small-business.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/eventiStyle.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/font-great-vibes.css" rel="stylesheet">
+    <link href="css/font-roboto.css" rel="stylesheet">
+    <link href="css/fontlato.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+	   <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/ekko-lightbox.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/small-business.js"></script>
+
+    <!-- Smooth Scroll -->
+    <script src="js/SmoothScroll.js"></script>
+
+    <!-- angularJS Scripts -->
+    <script src="js/angular-1.5.8/angular.min.js"></script>
+    <script src="js/angular-1.5.8/angular-animate.min.js"></script>
+    <script src="js/angular-1.5.8/angular-route.min.js"></script>
+    <script src="js/angular-1.5.8/angular-sanitize.min.js"></script>
+    <script src="js/angular-1.5.8/angular-touch.min.js"></script>
+    <script src="js/angular-1.5.8/angular-cookies.min.js"></script>
+    <script src="js/angular-1.5.8/ui-bootstrap-tpls-2.3.0.min.js"></script>
+
+    <!-- script angular app references -->
+    <script src="js/angular-app/module.js"></script>
+    <script src="js/angular-app/routing.js"></script>
+    <script src="js/angular-app/controller.js"></script>
+    <script src="js/angular-app/service.js"></script>
+    <script>
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+
+    </script>
+</head>
+
+<body ng-controller="cspp_Ctrl">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/">C S P P</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <a href="#/">Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown"> Galleria <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li data-toggle="collapse" data-target=".navbar-collapse.in">
+                                <a href="#/foto"> Foto </a>
+                            </li>
+                            <li data-toggle="collapse" data-target=".navbar-collapse.in">
+                                <a href="#/video"> Video </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <a href="#/eventi"> Eventi </a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown"> Progetti <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li data-toggle="collapse" data-target=".navbar-collapse.in">
+                                <a href="#/proTeatrali"> Teatrali </a>
+                            </li>
+                            <!--        <li data-toggle="collapse" data-target=".navbar-collapse.in">
+                                <a href="#/ciboInteg" > Pietanze ed Integrazione </a>
+                            </li>-->
+                        </ul>
+                    </li>
+                    <li data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <a href="#/membri">Membri</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown"> Altro <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li data-toggle="collapse" data-target=".navbar-collapse.in">
+                                <a href="#/innoSenegal"> Inno </a>
+                            </li>
+                            <li data-toggle="collapse" data-target=".navbar-collapse.in">
+                                <a href="#/areaRiservata">Area Riservata</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <a href="#/contattaci">Contattaci</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Main Content -->
+    <div ng-view></div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer class="customFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <p> Sede Legale </p>
+                    <p> Via Primo Bandini, 6 </p>
+                    <p> 43123 Parma</p>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <p> Iban: IT65V0623012705000036037667 </p>
+                    <p> Email: <a href="mailto:csppparma@gmail.com">csppparma@gmail.com</a></p>
+                    <p> P.I: 92041030344 </p>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <p> Copyright 2016 <span class="glyphicon glyphicon-copyright-mark"></span></p>
+                    <p><a href="./documenti/regolamento.pdf" download> Normativa e Privacy </a></p>
+                    <p>Creato da: <a href="https://www.linkedin.com/in/lamine92/" target="_blank"> Lamine Ndiaye </a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

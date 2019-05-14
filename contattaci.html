@@ -1,0 +1,64 @@
+<header class="intro-header" >
+    <div class="container overlay container-header">
+        <iframe width="100%" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Via%20Bandini%2C%206%2043123%20Parma&key=AIzaSyDLL3CsEUWKEt0sX045HUoYGJ1DMi-AG0M" allowfullscreen></iframe>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <p> Voui metterti in contatto con noi? <br />
+                Compila il modulo sottostante per inviare un messaggio e cercheremo di rispondere entro 24 ore!
+            </p>
+              <div ng-show="inviato" class="alert alert-success alert-dismissable fade in">
+                  <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong> Il messaggio &egrave; stato inviato con successo! </strong>
+              </div>
+            <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+            <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+            <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+            <form name="sentMessage" id="contactForm" ng-submit="inviaMessaggio()" novalidate>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label> Nome </label>
+                        <input type="text" class="form-control" placeholder="Nome" ng-model="formData.name" name="name" required>
+                        <p class="help-block text-danger" style="color:red" ng-show="sentMessage.name.$error.required">{{errors.name}}</p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label> Indirizzo Email </label>
+                        <input type="email" class="form-control" placeholder="Indirizzo Email" id="email" ng-model="formData.email" name="email" required>
+                        <p class="help-block text-danger" style="color:red" ng-show="sentMessage.email.$error.required">{{errors.email}}</p>
+                        <p class="help-block text-danger" style="color:red" ng-show="sentMessage.email.$error.email">Indirizzo Email non valido!</p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label> Numero telefono </label>
+                        <input type="tel" class="form-control" placeholder="Numero telefono" id="phone" ng-pattern="/^[0-9]*$/" ng-model="formData.phone" name="phone" required>
+                        <p class="help-block text-danger" style="color:red" ng-show="sentMessage.phone.$error.required">{{errors.phone}}</p>
+                        <p class="help-block text-danger" style="color:red" ng-show="sentMessage.phone.$error.pattern"> Il numero di telefono deve essere numerico. Esempio: 3245404351! </p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label> Messaggio </label>
+                        <textarea rows="5" class="form-control" placeholder="Messaggio" id="message" ng-model="formData.message" name="message" required></textarea>
+                        <p class="help-block text-danger" style="color:red" ng-show="sentMessage.message.$error.required">{{errors.message}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="form-group col-xs-12">
+                        <button type="submit" class="btn btn-success" 
+                                ng-disabled="sentMessage.name.$invalid ||  
+                                             sentMessage.email.$invalid ||
+                                             sentMessage.phone.$invalid ||
+                                             sentMessage.message.$invalid"> Invia </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

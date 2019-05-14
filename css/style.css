@@ -1,0 +1,140 @@
+.inizioCar{
+    color: #0085a1;
+}
+
+.logo {
+    padding: 32px;
+    height: auto; 
+    width: auto !important;
+    background-image: url('/immagine/logo32.png');
+    background-repeat: no-repeat;
+}
+
+.imgCentro {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+.imgCarousel{
+    height: 600px !important;
+    width: 100% !important;
+}
+.container-header{
+    margin-top: 50px;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .imgCarousel{
+        height: 300px !important;
+        width: 100% !important;
+    }
+    
+    .carousel-caption > h1{
+        font-size: 22px;
+    }
+    
+    .jumbotron {
+      margin-left: 10px !important;
+      margin-right: 10px !important;
+   }
+}
+
+.customFooter{
+    font-size: 14px !important;
+    margin-bottom: 25px; 
+    padding: 0 !important;
+}
+.customFooter > div > div > div > p {
+    margin: 0 !important;
+}
+
+.membri{
+    font-size: 16px;
+}
+
+.membri > div > div > div > div > div > div > p {
+    margin: 0 0 10px;
+}
+
+.customContainer{
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+uib-accordion a{
+    font-size: 12px;
+}
+
+uib-accordion > div > div > div > h4 > a:hover, 
+uib-accordion > div > div > div > h4 > a:focus{
+    color: #404040;
+}
+
+.jumbotron {
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 20px;
+    text-align: center;
+}
+
+/*Business Card Css */
+.business-card {
+  border: 1px solid #cccccc;
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.profile-img {
+  height: 80px;
+  background: white;
+}
+.job {
+  color: #666666;
+  font-size: 17px;
+}
+.mail {
+  font-size: 12px;
+ }
+
+.media-heading{
+  font-size: 25px !important;
+}
+
+.btn-custom {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  border-radius: 5px !important;
+  padding: 5px 5px !important;
+}
+
+.img-custom{
+    height: 200px !important;
+}
+
+/*
+.zoom {      
+    -webkit-transition: all 0.35s ease-in-out;    
+    -moz-transition: all 0.35s ease-in-out;    
+    transition: all 0.35s ease-in-out;     
+    cursor: -webkit-zoom-in;      
+    cursor: -moz-zoom-in;      
+    cursor: zoom-in;  
+}     
+
+.zoom:hover,  
+.zoom:active,   
+.zoom:focus {
+    -ms-transform: scale(2.5);    
+    -moz-transform: scale(2.5);  
+    -webkit-transform: scale(2.5);  
+    -o-transform: scale(2.5);  
+    transform: scale(2.5);    
+    position:relative;      
+    z-index:100;  
+}*/
