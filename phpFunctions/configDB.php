@@ -11,8 +11,4 @@ $nome_db = "msenegae_DbCspp";
 $servername = "localhost";
 $nomeUtente = "root";
 $password = "";
-
-/*config path foto*/
-//$relativePath = $rootDir."/associazione".$pathFolder;
-//$relativePath = $rootDir.$pathFolder;
 ?>

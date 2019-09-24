@@ -11,7 +11,7 @@
 </header>
 
 <!-- content -->
-<div class="container">
+<!-- <div class="container">
 	<div class="row">
 	    <div class="col-xs-12 col-sm-3">
 	        <div class="list-group">
@@ -30,14 +30,76 @@
                 <a ng-click="switchTemplate(4)" class="list-group-item" ng-class="{active:selected==4}">
                     Festa Fine Anno 2016
                 </a>
-            </div><!-- /list-group -->      
-	    </div><!-- /col -->
+            </div>    
+	    </div>
 	    <div class="col-xs-12 col-sm-9">
 	        <div class="row">
                 <div class="slide-animate" ng-include="templateUrl"></div>
 	        </div>
 	    </div>
 	</div>
-</div>
+</div> -->
+
+
+
+<div class="container">
+    <div class="row">
+        <div ng-repeat="album in visitaConsolato track by $index" class="col-xs-12 col-sm-4">
+            <a ng-click="switchTemplate(album)">
+                <div class="cardList">
+                    <div class="card">
+                        <div class="card__bg" style="background-image: url('{{album[1]}}')"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card__bg" style="background-image: url('{{album[2]}}')"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card__bg" style="background-image: url('{{album[3]}}')"></div>
+                    </div>
+                    <span class="cardList__title">{{album[0]}}</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+        <div class="row">
+            <div class="slide-animate" ng-include="templateUrl"></div>
+        </div>
+    </div>
+    <!-- <div class="cardList">
+      <div class="card">
+        <div class="card__bg" style="background-image: url('./immagine/lamine.png')"></div>
+      </div>
+      <div class="card">
+        <div class="card__bg" style="background-image: url('./immagine/lamine.png')"></div>
+      </div>
+      <div class="card">
+        <div class="card__bg" style="background-image: url('./immagine/lamine.png')"></div>
+      </div><span class="cardList__title">Album 2</span>
+    </div>
+    <div class="cardList">
+      <div class="card">
+        <div class="card__bg" style="background-image: url('./immagine/lamine.png')"></div>
+      </div>
+      <div class="card">
+        <div class="card__bg" style="background-image: url('./immagine/lamine.png')"></div>
+      </div>
+      <div class="card">
+        <div class="card__bg" style="background-image: url('./immagine/lamine.png')"></div>
+      </div><span class="cardList__title">Album 3</span>
+    </div>
+    <div class="cardList">
+      <div class="card">
+        <div class="card__bg" style="background-image: url('./immagine/lamine.png')"></div>
+      </div>
+      <div class="card">
+        <div class="card__bg" style="background-image: url('./immagine/lamine.png')"></div>
+      </div>
+      <div class="card">
+        <div class="card__bg" style="background-image: url('./immagine/lamine.png')"></div>
+      </div><span class="cardList__title">Album 4</span>
+    </div> -->
+  </div>
+
 <!-- /container -->
 

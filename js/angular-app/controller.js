@@ -173,6 +173,7 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
             function (data) {
                 if (temp == 1) {
                     $scope.visitaConsolato = data.data;
+                    console.log(data.data);
                 }
                 if (temp == 2) {
                     $scope.elezione2016 = data.data;
@@ -203,46 +204,54 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
                 //console.log($scope.listaVideoTeatro);
             },
             function (data) {
-                ////console.log(data);
+                //console.log(data);
             }
         );
     }
 
-    $scope.templateUrl = "liste.html";
-    $scope.selected = 5;
-    $scope.switchTemplate = function (temp) {
-        if (temp == 1) {
-            $scope.selected = 1;
+    // $scope.templateUrl = "liste.html";
+    // $scope.selected = 1;
+    // $scope.switchTemplate = function (temp) {
+    //     if (temp == 1) {
+    //         $scope.selected = 1;
+    //         $scope.templateUrl = "visitaConsolato.html";
+    //         //$scope.loadPhoto("/immagine/VisitaConsolato", temp);
+    //     }
+    //     if (temp == 2) {
+    //         $scope.selected = 2;
+    //         $scope.templateUrl = "elezione2016.html";
+    //         //$scope.loadPhoto("/immagine/Elezione2016", temp);
+    //     }
+    //     if (temp == 3) {
+    //         $scope.selected = 3;
+    //         $scope.templateUrl = "partitaCalcio.html";
+    //         //$scope.loadPhoto("/immagine/Partite", temp);
+    //     }
+    //     if (temp == 4) {
+    //         $scope.selected = 4;
+    //         $scope.templateUrl = "festaFineAnno.html";
+    //         //$scope.loadPhoto("/immagine/FestaFineAnno", temp);
+    //     }
+    //     if (temp == 5) {
+    //         $scope.selected = 5;
+    //         $scope.templateUrl = "liste.html";
+    //         //$scope.loadPhoto("/immagine/FestaFineAnno", temp);
+    //     }
+    //     if (temp == 6) {
+    //         $scope.selected = 6;
+    //         $scope.templateUrl = "listaVideo.html";
+    //         //$scope.loadPhoto("/immagine/FestaFineAnno", temp);
+    //     }
+    // }
+
+    $scope.switchTemplate = function (album) {
+        if (album !== null) {
+            //$scope.selected = 1;
+            $scope.albumFoto = album;
             $scope.templateUrl = "visitaConsolato.html";
             //$scope.loadPhoto("/immagine/VisitaConsolato", temp);
         }
-        if (temp == 2) {
-            $scope.selected = 2;
-            $scope.templateUrl = "elezione2016.html";
-            //$scope.loadPhoto("/immagine/Elezione2016", temp);
-        }
-        if (temp == 3) {
-            $scope.selected = 3;
-            $scope.templateUrl = "partitaCalcio.html";
-            //$scope.loadPhoto("/immagine/Partite", temp);
-        }
-        if (temp == 4) {
-            $scope.selected = 4;
-            $scope.templateUrl = "festaFineAnno.html";
-            //$scope.loadPhoto("/immagine/FestaFineAnno", temp);
-        }
-        if (temp == 5) {
-            $scope.selected = 5;
-            $scope.templateUrl = "liste.html";
-            //$scope.loadPhoto("/immagine/FestaFineAnno", temp);
-        }
-        if (temp == 6) {
-            $scope.selected = 6;
-            $scope.templateUrl = "listaVideo.html";
-            //$scope.loadPhoto("/immagine/FestaFineAnno", temp);
-        }
     }
-
 
     $scope.videotemplateUrl = "listaVideo.html";
     $scope.selectedVideo = 1;
@@ -476,11 +485,12 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
     }
 
     $scope.getDaysArray(1);
-    $scope.loadPhoto("/immagine/VisitaConsolato", 1);
-    $scope.loadPhoto("/immagine/Elezione2016", 2);
-    $scope.loadPhoto("/immagine/Partite", 3);
-    $scope.loadPhoto("/immagine/FestaFineAnno", 4);
-    $scope.loadPhoto("/immagine/Liste", 5);
+    $scope.loadPhoto("/immagine", 1);
+    //$scope.loadPhoto("/immagine/VisitaConsolato", 1);
+    // $scope.loadPhoto("/immagine/Elezione2016", 2);
+    // $scope.loadPhoto("/immagine/Partite", 3);
+    // $scope.loadPhoto("/immagine/FestaFineAnno", 4);
+    // $scope.loadPhoto("/immagine/Liste", 5);
 });
 
 app.filter('split', function () {
