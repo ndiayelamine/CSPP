@@ -1,5 +1,5 @@
 <div class="well well-sm">
-    <legend><i class="glyphicon glyphicon-globe"></i> Evento</legend>
+    <legend><i class="glyphicon glyphicon-globe"></i> <b>Evento</b></legend>
     <div ng-show="$parent.eventoInserito" class="alert alert-success alert-dismissable fade in">
         <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong> Evento Creato con successo !!! </strong>
@@ -57,7 +57,7 @@
                 <button class="btn btn-sm btn-primary" type="submit" style="margin-bottom:8px;">Crea Evento</button>
             </div>
             <div class="col-sm-6 col-lg-6 col-xs-12">
-                <button class="btn btn-sm btn-danger" type="reset" style="margin-bottom:8px;" ng-click="$parent.reset()">
+                <button class="btn btn-sm btn-danger" type="reset" style="margin-bottom:8px;" ng-click="$parent.reset('NE')">
                     Svuota Campi
                 </button>
             </div>

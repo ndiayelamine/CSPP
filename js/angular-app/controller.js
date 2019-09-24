@@ -36,6 +36,11 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
     $scope.tipo = {};
     $scope.loginData = {};
     $scope.listaVideoTeatro = {};
+    $scope.urlVideo = "";
+    $scope.nomeVideo = "";
+    $scope.descVideo = "";
+    $scope.videoInserito = false;
+    $scope.erroreVideo = false;
     //    $scope.dataEvento = {titolo:"", messaggio:"", tipo:"", dataOra: "", nomeUtente:""};
 
     //    for(i = 0; i < 10; i++){
@@ -195,10 +200,10 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
                 else
                     $scope.listaVideoTeatro = {};
 
-                console.log($scope.listaVideoTeatro);
+                //console.log($scope.listaVideoTeatro);
             },
             function (data) {
-                console.log(data);
+                ////console.log(data);
             }
         );
     }
@@ -308,8 +313,8 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
         if (tipo == "IS") {
             $scope.templateOperazioneUrl = "inviaSms.html";
         }
-        if (tipo == "CF") {
-            $scope.templateOperazioneUrl = "caricaFoto.html";
+        if (tipo == "CV") {
+            $scope.templateOperazioneUrl = "caricaVideo.html";
         }
     }
 
@@ -317,33 +322,41 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
         $location.url('/');
     }
 
-    $scope.reset = function () {
-        $scope.giorno = {};
-        $scope.mese = {};
-        $scope.ora = {};
-        $scope.minuto = {};
-        $scope.titoloEvento = "";
-        $scope.messaggioEvento = "";
-        $scope.tipo = {};
-        $scope.anno
-        $scope.erroreEvento = false;
-        if ($scope.eventoInserito)
-            $scope.eventoInserito = false;
+    $scope.reset = function (tipo) {
+        if(tipo == "NE"){
+            $scope.giorno = {};
+            $scope.mese = {};
+            $scope.ora = {};
+            $scope.minuto = {};
+            $scope.titoloEvento = "";
+            $scope.messaggioEvento = "";
+            $scope.tipo = {};
+            $scope.anno
+            $scope.erroreEvento = false;
+            if ($scope.eventoInserito)
+                $scope.eventoInserito = false;
 
-        //        $scope.giorno.numero = $scope.giorni[0].numero;
-        //        $scope.mese.numero = $scope.mesi[0].numero;
-        //        $scope.mese.nome = $scope.mesi[0].nome;
-        //        $scope.anno = $scope.date.getFullYear();
-        //        $scope.ora.hh = $scope.ore[0].hh;
-        //        $scope.minuto.mm = $scope.minuti[0].mm;
-        //        $scope.titoloEvento = "";
-        //        $scope.messaggioEvento = "";
-        //        $scope.tipo.nome = $scope.tipi[0].nome;
+            //        $scope.giorno.numero = $scope.giorni[0].numero;
+            //        $scope.mese.numero = $scope.mesi[0].numero;
+            //        $scope.mese.nome = $scope.mesi[0].nome;
+            //        $scope.anno = $scope.date.getFullYear();
+            //        $scope.ora.hh = $scope.ore[0].hh;
+            //        $scope.minuto.mm = $scope.minuti[0].mm;
+            //        $scope.titoloEvento = "";
+            //        $scope.messaggioEvento = "";
+            //        $scope.tipo.nome = $scope.tipi[0].nome;
+        }
+        if(tipo == "CV"){
+            $scope.urlVideo = "";
+            $scope.nomeVideo = "";
+            $scope.descVideo = "";
+        }
     }
 
     $scope.creaEvento = function () {
         $scope.nomeUtente = $cookies.get('nomeUtente');
         $scope.dataEvento = {
+            tipoOperazione: "NE",
             dataOra: $scope.anno + "-" + $scope.mese.numero + "-" +
                 $scope.giorno.numero + " " + $scope.ora.hh + ":" + $scope.minuto.mm + ":00",
             tipo: $scope.tipo.nome,
@@ -364,18 +377,18 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
                 response.then(
                     function (data) {
                         if (data.data == "insertOK") {
-                            $scope.reset();
                             $scope.eventoInserito = true;
-                            console.log(data);
+                            $scope.reset($scope.dataEvento.tipoOperazione);
+                            //console.log(data);
                         } else {
                             $scope.eventoInserito = false;
-                            console.log(data);
+                            //console.log(data);
                         }
 
                     },
                     function (data) {
                         $scope.eventoInserito = false;
-                        console.log(data);
+                        //console.log(data);
                     }
                 );
                 $scope.erroreEvento = false;
@@ -383,6 +396,44 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
         } else {
             $scope.erroreEvento = true;
             $scope.eventoInserito = false;
+        }
+    }
+
+    $scope.caricaVideo = function () {
+        $scope.dataVideo = {
+            tipoOperazione: "CV",
+            urlVideo: $scope.urlVideo,
+            nomeVideo: $scope.nomeVideo,
+            descVideo: $scope.descVideo
+        };
+        if ($scope.urlVideo != undefined && $scope.nomeVideo != undefined) {
+            if ($scope.urlVideo == "" && $scope.nomeVideo == "") {
+                $scope.erroreVideo = true;
+                $scope.videoInserito = false;
+            } else {
+                var response = cspp_service.caricaVideo($scope.dataVideo);
+                response.then(
+                    function (data) {
+                        if (data.data == "insertOK") {
+                            $scope.videoInserito = true;
+                            $scope.reset($scope.dataVideo.tipoOperazione);
+                            //console.log(data);
+                        } else {
+                            $scope.videoInserito = false;
+                            //console.log(data);
+                        }
+
+                    },
+                    function (data) {
+                        $scope.videoInserito = false;
+                        //console.log(data);
+                    }
+                );
+                $scope.erroreVideo = false;
+            }
+        } else {
+            $scope.erroreVideo = true;
+            $scope.videoInserito = false;
         }
     }
 
@@ -395,10 +446,10 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
                 else
                     $scope.listaEventi = {};
 
-                console.log($scope.listaEventi);
+                //console.log($scope.listaEventi);
             },
             function (data) {
-                console.log(data);
+                ////console.log(data);
             }
         );
     }

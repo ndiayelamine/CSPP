@@ -43,6 +43,17 @@ app.service("cspp_service", function ($http) {
         });
     }
 
+    this.caricaVideo = function (datiVideo) {
+        return response = $http({
+            method: 'POST',
+            url: './phpFunctions/operazioni.php',
+            data: datiVideo,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    }
+
     this.getEventi = function () {
         return response = $http({
             method: 'GET',

@@ -1,0 +1,27 @@
+<div class="well well-sm">
+    <legend><i class="glyphicon glyphicon-globe"></i> <b>Caricamento Video</b></legend>
+    <div ng-show="$parent.videoInserito" class="alert alert-success alert-dismissable fade in">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong> Video Caricato con successo !!! </strong>
+    </div>
+    <div ng-show="$parent.erroreVideo" class="alert alert-danger alert-dismissable fade in">
+        <!--                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+        <strong> Per favore completare tutti i campi !!! </strong>
+    </div>
+    <form class="form" id="formVideo" ng-submit="$parent.caricaVideo()" novalidate>
+        <input class="form-control" placeholder="Url video" type="text" ng-model="$parent.urlVideo" />
+        <input class="form-control" placeholder="nome video" type="text" ng-model="$parent.nomeVideo" />
+        <input class="form-control" placeholder="descrizione video" type="text" ng-model="$parent.descVideo" />
+
+        <div class="row">
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+                <button class="btn btn-sm btn-primary" type="submit" style="margin-bottom:8px;">Carica</button>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+                <button class="btn btn-sm btn-danger" type="reset" style="margin-bottom:8px;" ng-click="$parent.reset('CV')">
+                    Svuota Campi
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
