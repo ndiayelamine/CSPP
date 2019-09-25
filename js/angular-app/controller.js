@@ -42,6 +42,7 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
     $scope.videoInserito = false;
     $scope.erroreVideo = false;
     $scope.templateUrl = "listaAlbum.html";
+    $scope.nomeAlbum = "";
     //    $scope.dataEvento = {titolo:"", messaggio:"", tipo:"", dataOra: "", nomeUtente:""};
 
     //    for(i = 0; i < 10; i++){
@@ -168,11 +169,15 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
         }
     ];
 
+    $scope.tornaIndietroFoto = function(album){
+        $scope.albumFoto.unshift($scope.nomeAlbum);
+        $scope.templateUrl = "listaAlbum.html";
+    }
+
     $scope.loadPhoto = function (path) {
         var response = cspp_service.scanFolder(path);
         response.then(
             function (data) {
-                $scope.templateUrl = "listaAlbum.html";
                 $scope.listaAlbum = data.data;
                 //console.log(data.data);
             },
@@ -199,7 +204,7 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
 
     $scope.switchTemplate = function (album) {
         if (album !== null) {
-            album.shift();
+            $scope.nomeAlbum = album.shift();
             $scope.albumFoto = album;
             $scope.templateUrl = "listaFoto.html";
         }
