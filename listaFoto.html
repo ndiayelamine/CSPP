@@ -1,5 +1,11 @@
+<div class="container">
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <a ng-click="loadPhoto('/immagine')" style="text-decoration: none"> &leftarrow; Torna Indietro </a>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12"><br/></div>
 <div ng-repeat="foto in albumFoto track by $index" class="col-xs-12 col-sm-4">
     <a href="{{foto}}" class="thumbnail" data-toggle="lightbox" data-gallery="visita">
       <img ng-src="{{foto}}" class="img-responsive img-custom">
     </a>
+</div>
 </div>
