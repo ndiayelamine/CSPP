@@ -21,6 +21,17 @@ app.service("cspp_service", function ($http) {
         });
     }
 
+    this.caricaCartella = function (dataAlbum) {
+        return response = $http({
+            method: 'GET',
+            url: './phpFunctions/operazioni.php',
+            data: dataAlbum,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    }
+
     this.serviceLogin = function (loginData) {
         return response = $http({
             method: 'POST',

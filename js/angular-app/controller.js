@@ -44,6 +44,9 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
     $scope.erroreVideo = false;
     $scope.templateUrl = "listaAlbum.html";
     $scope.nomeAlbum = "";
+    $scope.nomeCartella = "";
+    $scope.cartella = [];
+    $scope.upload = "upload";
     //    $scope.dataEvento = {titolo:"", messaggio:"", tipo:"", dataOra: "", nomeUtente:""};
 
     //    for(i = 0; i < 10; i++){
@@ -186,6 +189,25 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
         );
     }
 
+    $scope.caricaAlbum = function () {
+        $scope.dataAlbum = {
+            tipoOperazione: "CF",
+            foldername: $scope.nomeCartella,
+            upload: $scope.upload,
+            files: $scope.cartella
+        };
+        console.log($scope.dataAlbum);
+        var response = cspp_service.caricaCartella($scope.dataAlbum);
+        response.then(
+            function (data) {
+                console.log(data.data);
+            },
+            function (data) {
+                console.log(data.data);
+            }
+        );
+    }
+
     $scope.getVideo = function () {
         var response = cspp_service.getSelectVideo();
         response.then(
@@ -284,11 +306,11 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
             $scope.eventoInserito = false;
             $scope.templateOperazioneUrl = "nuovoEvento.html";
         }
-        if (tipo == "IS") {
-            $scope.templateOperazioneUrl = "inviaSms.html";
-        }
         if (tipo == "CV") {
             $scope.templateOperazioneUrl = "caricaVideo.html";
+        }
+        if (tipo == "CF") {
+            $scope.templateOperazioneUrl = "caricaFoto.html";
         }
     }
 

@@ -1,61 +1,93 @@
 <style>
-.stileFont{
-    font-size: 14px !important;
-}
-/* layout.css Style */
-.upload-drop-zone {
-  height: 200px;
-  border-width: 2px;
-  margin-bottom: 20px;
-}
+    .stileFont {
+        font-size: 14px !important;
+    }
 
-/* skin.css Style*/
-.upload-drop-zone {
-  color: #ccc;
-  border-style: dashed;
-  border-color: #ccc;
-  line-height: 200px;
-  text-align: center
-}
-.upload-drop-zone.drop {
-  color: #222;
-  border-color: #222;
-}
+    /* layout.css Style */
+    .upload-drop-zone {
+        height: 200px;
+        border-width: 2px;
+        margin-bottom: 20px;
+    }
+
+    /* skin.css Style*/
+    .upload-drop-zone {
+        color: #ccc;
+        border-style: dashed;
+        border-color: #ccc;
+        line-height: 200px;
+        text-align: center
+    }
+
+    .upload-drop-zone.drop {
+        color: #222;
+        border-color: #222;
+    }
+
+    .btnUpload {
+        padding: 5px;
+    }
 </style>
 
 
 <div class="panel panel-default stileFont">
-    <div class="panel-heading"><h3>Upload Files</h3></div>
+    <div class="panel-heading">
+        <h3>Caricamento Foto</h3>
+    </div>
     <div class="panel-body">
-      <!-- Standar Form -->
-        <h4>Select files from your computer</h4>
+        <!-- Standar Form -->
+        <!-- <h2>Caricamento Foto singolo</h2>
         <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
             <div class="form-inline">
                 <div class="form-group">
                     <input type="file" name="files[]" id="js-upload-files" multiple>
                 </div>
-                <button type="button" class="btn btn-xs btn-primary" id="js-upload-submit">Upload files</button>
+                <button type="button" class="btn btn-xs btn-primary" id="js-upload-submit">Carica Foto</button>
             </div>
+        </form> -->
+
+        <h2>Caricamento Album</h2>
+        <form method="post" enctype="multipart/form-data" action="./phpFunctions/caricaAlbum.php">
+            <div class="form-inline">
+                <div class="form-group">
+                    <span><strong>Nome Album</strong></span> &nbsp;
+                    <input type="text" class="form-control" name="foldername" id="foldername" required placeholder="Nome Album">
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    <input type="file" name="files[]" id="files" required multiple directory="" webkitdirectory=""
+                        mozdirectory="">
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    <!-- <button type="submit" class="btn btn-primary btn-xs btnUpload" id="uploadFolder">Carica Album</button> -->
+                    <input class="btn btn-primary btn-xs btnUpload" type="submit" value="Carica Album" name="upload" />
+                </div>
+            </div>
+            <!-- <input class="button" type="submit" value="Upload" name="upload" /> -->
         </form>
 
-      <!-- Drop Zone -->
-        <h4>Or drag and drop files below</h4>
-        <div class="upload-drop-zone" id="drop-zone">Just drag and drop files here</div>
-      <!-- Progress Bar -->
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+        <!-- Drop Zone -->
+        <!-- <h4>Or drag and drop files below</h4>
+        <div class="upload-drop-zone" id="drop-zone">Just drag and drop files here</div> -->
+        <!-- Progress Bar -->
+        <!-- <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                style="width: 60%;">
                 <span class="sr-only">60% Complete</span>
             </div>
-        </div>
+        </div> -->
 
-      <!-- Upload Finished -->
-        <div class="js-upload-finished">
+        <!-- Upload Finished -->
+        <!-- <div class="js-upload-finished">
             <h3>Processed files</h3>
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>image-01.jpg</a>
-                <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>image-02.jpg</a>
+                <a href="#" class="list-group-item list-group-item-success"><span
+                        class="badge alert-success pull-right">Success</span>image-01.jpg</a>
+                <a href="#" class="list-group-item list-group-item-success"><span
+                        class="badge alert-success pull-right">Success</span>image-02.jpg</a>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
