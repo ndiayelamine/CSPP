@@ -36,6 +36,7 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
     $scope.tipo = {};
     $scope.loginData = {};
     $scope.listaVideoTeatro = {};
+    $scope.listaMembri = {};
     $scope.urlVideo = "";
     $scope.nomeVideo = "";
     $scope.descVideo = "";
@@ -195,6 +196,23 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
                     $scope.listaVideoTeatro = {};
 
                 //console.log($scope.listaVideoTeatro);
+            },
+            function (data) {
+                //console.log(data);
+            }
+        );
+    }
+
+    $scope.getMembri = function () {
+        var response = cspp_service.getSelectMembri();
+        response.then(
+            function (data) {
+                if (data.data != "0")
+                    $scope.listaMembri = data.data;
+                else
+                    $scope.listaMembri = {};
+
+                //console.log($scope.listaMembri);
             },
             function (data) {
                 //console.log(data);

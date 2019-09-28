@@ -67,4 +67,11 @@ app.service("cspp_service", function ($http) {
             url: './phpFunctions/getVideo.php',
         });
     }
+
+    this.getSelectMembri = function () {
+        return response = $http({
+            method: 'GET',
+            url: './phpFunctions/getMembri.php',
+        });
+    }
 });
