@@ -21,17 +21,14 @@ app.service("cspp_service", function ($http) {
         });
     }
 
-    this.caricaCartella = function (dataAlbum) {
-        return response = $http({
-            method: 'GET',
-            url: './phpFunctions/operazioni.php',
-            data: dataAlbum,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
+    this.uploadFolder = function(form_data){
+        return response = $http.post('./phpFunctions/caricaAlbum.php', form_data, {
+            //withCredentials: false,
+            headers: {'Content-Type': undefined,'Process-Data': false},
+            transformRequest: angular.identity
         });
     }
-
+    
     this.serviceLogin = function (loginData) {
         return response = $http({
             method: 'POST',
@@ -71,7 +68,7 @@ app.service("cspp_service", function ($http) {
             url: './phpFunctions/getEventi.php',
         });
     }
-    
+
     this.getSelectVideo = function () {
         return response = $http({
             method: 'GET',

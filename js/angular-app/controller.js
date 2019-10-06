@@ -1,4 +1,17 @@
-app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, cspp_service) {
+app.directive("fileInput", function ($parse) {
+    return {
+        link: function ($scope, element, attrs) {
+            element.on("change", function (event) {
+                var files = event.target.files;
+                $parse(attrs.fileInput).assign($scope, element[0].files);
+                //console.log(element[0].files);
+                $scope.$apply();
+            });
+        }
+    }
+});
+
+app.controller('cspp_Ctrl', function ($scope, $cookies, $location, cspp_service) {
     $scope.myInterval = 3000;
     $scope.noWrapSlides = false;
     $scope.active = 0;
@@ -45,8 +58,9 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
     $scope.templateUrl = "listaAlbum.html";
     $scope.nomeAlbum = "";
     $scope.nomeCartella = "";
-    $scope.cartella = [];
-    $scope.upload = "upload";
+    $scope.files;
+    $scope.msgUpdResult = "";
+    $scope.isUpdFile = false;
     //    $scope.dataEvento = {titolo:"", messaggio:"", tipo:"", dataOra: "", nomeUtente:""};
 
     //    for(i = 0; i < 10; i++){
@@ -54,53 +68,53 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
     //    }
 
     $scope.mesi = [{
-            "numero": 1,
-            "nome": 'Gennaio'
-        },
-        {
-            "numero": 2,
-            "nome": 'Febbraio'
-        },
-        {
-            "numero": 3,
-            "nome": 'Marzo'
-        },
-        {
-            "numero": 4,
-            "nome": 'Aprile'
-        },
-        {
-            "numero": 5,
-            "nome": 'Maggio'
-        },
-        {
-            "numero": 6,
-            "nome": 'Giugno'
-        },
-        {
-            "numero": 7,
-            "nome": 'Luglio'
-        },
-        {
-            "numero": 8,
-            "nome": 'Agosto'
-        },
-        {
-            "numero": 9,
-            "nome": 'Settembre'
-        },
-        {
-            "numero": 10,
-            "nome": 'Ottobre'
-        },
-        {
-            "numero": 11,
-            "nome": 'Novembre'
-        },
-        {
-            "numero": 12,
-            "nome": 'Dicembre'
-        }];
+        "numero": 1,
+        "nome": 'Gennaio'
+    },
+    {
+        "numero": 2,
+        "nome": 'Febbraio'
+    },
+    {
+        "numero": 3,
+        "nome": 'Marzo'
+    },
+    {
+        "numero": 4,
+        "nome": 'Aprile'
+    },
+    {
+        "numero": 5,
+        "nome": 'Maggio'
+    },
+    {
+        "numero": 6,
+        "nome": 'Giugno'
+    },
+    {
+        "numero": 7,
+        "nome": 'Luglio'
+    },
+    {
+        "numero": 8,
+        "nome": 'Agosto'
+    },
+    {
+        "numero": 9,
+        "nome": 'Settembre'
+    },
+    {
+        "numero": 10,
+        "nome": 'Ottobre'
+    },
+    {
+        "numero": 11,
+        "nome": 'Novembre'
+    },
+    {
+        "numero": 12,
+        "nome": 'Dicembre'
+    }];
 
     $scope.ore = [];
     for (i = 0; i < 24; i++) {
@@ -173,7 +187,7 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
         }
     ];
 
-    $scope.tornaIndietroFoto = function(album){
+    $scope.tornaIndietroFoto = function (album) {
         $scope.albumFoto.unshift($scope.nomeAlbum);
         $scope.templateUrl = "listaAlbum.html";
     }
@@ -185,25 +199,34 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
                 $scope.listaAlbum = data.data;
                 //console.log(data.data);
             },
-            function (data) {}
+            function (data) { }
         );
     }
 
-    $scope.caricaAlbum = function () {
-        $scope.dataAlbum = {
-            tipoOperazione: "CF",
-            foldername: $scope.nomeCartella,
-            upload: $scope.upload,
-            files: $scope.cartella
-        };
-        console.log($scope.dataAlbum);
-        var response = cspp_service.caricaCartella($scope.dataAlbum);
+
+    $scope.uploadFile = function () {
+        var form_data = new FormData();
+        angular.forEach($scope.files, function (file) {
+            form_data.append('file[]', file);
+        });
+        form_data.append('folderName', $scope.nomeCartella);
+        var response = cspp_service.uploadFolder(form_data);
         response.then(
             function (data) {
-                console.log(data.data);
+                // console.log(data.data);
+                $scope.msgUpdResult = data.data;
+                $scope.isUpdFile = true;
+                $scope.nomeCartella = "";
+                $scope.files = {};
+                document.getElementById("inputUpd").value = "";
             },
             function (data) {
-                console.log(data.data);
+                // console.log(data.data);
+                $scope.isUpdFile = false;
+                $scope.msgUpdResult = data.data;
+                $scope.nomeCartella = "";
+                $scope.files =  {};
+                document.getElementById("inputUpd").value = "";
             }
         );
     }
@@ -319,7 +342,7 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
     }
 
     $scope.reset = function (tipo) {
-        if(tipo == "NE"){
+        if (tipo == "NE") {
             $scope.giorno = {};
             $scope.mese = {};
             $scope.ora = {};
@@ -342,7 +365,7 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
             //        $scope.messaggioEvento = "";
             //        $scope.tipo.nome = $scope.tipi[0].nome;
         }
-        if(tipo == "CV"){
+        if (tipo == "CV") {
             $scope.urlVideo = "";
             $scope.nomeVideo = "";
             $scope.descVideo = "";
@@ -361,7 +384,7 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
             nomeUtente: $scope.nomeUtente
         };
         if ($scope.anno != undefined && $scope.mese.numero != undefined && $scope.giorno.numero != undefined &&
-            $scope.ora.hh != undefined && $scope.minuto.mm != undefined && $scope.tipo.nome != undefined &&
+            $scope.ora.hh != undefined && $scope.application / x - www - form - urlencodedapplication / x - www - form - urlencodedminuto.mm != undefined && $scope.tipo.nome != undefined &&
             $scope.messaggioEvento != undefined && $scope.titoloEvento != undefined) {
             if ($scope.anno == "" && $scope.mese.numero == "" && $scope.giorno.numero == "" &&
                 $scope.ora.hh == "" && $scope.minuto.mm == "" && $scope.tipo.nome == "" &&
@@ -455,7 +478,7 @@ app.controller('cspp_Ctrl', function ($scope, $cookies, $location, $timeout, csp
         return array[nb];
     }
 
-    $scope.getDaysArray = function (month) { // month count is 2  
+    $scope.getDaysArray = function (month) { // month count is 2
         $scope.month = month;
         $scope.year = $scope.anno;
         $scope.nDays = new Date($scope.year, $scope.month, 0).getDate();
