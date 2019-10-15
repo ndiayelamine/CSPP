@@ -3,8 +3,8 @@ $rootDir = $_SERVER['DOCUMENT_ROOT'];
 $pathFolder = $_GET["path"];
 
 /*config path foto*/
-$relativePath = $rootDir."/CSPP".$pathFolder;
-//$relativePath = $rootDir.$pathFolder;
+//$relativePath = $rootDir."/CSPP".$pathFolder;
+$relativePath = $rootDir.$pathFolder;
 
 //settaggio parametri DB
 include 'configDB.php';
